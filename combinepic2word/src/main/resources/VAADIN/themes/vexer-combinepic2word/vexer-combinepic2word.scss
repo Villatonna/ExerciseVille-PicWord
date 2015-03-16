@@ -1,0 +1,17 @@
+@mixin vexer-combinepic2word {
+
+	/*
+	* Vaadin provides an effective way of importing add-on themes but does not 
+	* provide any automatic name-spacing. You should prefix all your 
+	* rules with combinepic2word to avoid any conflicts.
+	*/
+
+	.combinepic2word-answer {
+		color: green;
+	}
+
+	.combinepic2word-title {
+		font-size: 24px;
+		font-weight: stronger;
+	}
+}
