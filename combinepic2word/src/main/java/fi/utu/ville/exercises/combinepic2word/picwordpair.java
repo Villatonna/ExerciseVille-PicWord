@@ -14,17 +14,21 @@ import fi.utu.ville.standardutils.AbstractFile;
  * @author jarde
  */
 class picwordpair {
-    private Image image;
     private String answer;
     private AbstractFile file;
-    public picwordpair(Image img, String ans, AbstractFile file){
+    private Object item;
+    private int exercisePosition;
+    
+    public picwordpair(String ans, AbstractFile file, int pos){
         this.answer = ans;
-        this.image = img;
         this.file = file;
+        this.exercisePosition = pos;     
     }
     
-    public Image getImage(){
-        return this.image;
+    public picwordpair(){
+        this.answer="";
+        this.file=null;
+        this.exercisePosition=-1;
     }
     
     public String getAnswer(){
@@ -33,5 +37,21 @@ class picwordpair {
     
     public AbstractFile getFile(){
         return this.file;
+    }
+    
+    public void setItemObject(Object obj){
+        item=obj;
+    }
+    
+    public Object getItemObject(){
+        return item;
+    }
+    
+    public void setPosition(int pos){
+        exercisePosition=pos;
+    }
+    
+    public Integer getPosition(){
+        return exercisePosition;
     }
 }
