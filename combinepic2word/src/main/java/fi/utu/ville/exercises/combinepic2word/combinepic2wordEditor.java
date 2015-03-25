@@ -187,7 +187,7 @@ public class combinepic2wordEditor extends VilleContent implements
                             }
                 }));
 
-        GridLayout editlayout = new GridLayout(8, 8);
+        GridLayout editlayout = new GridLayout(8, 12);
         editlayout.setRowExpandRatio(3, 1);
         
         doUpdateList();
@@ -472,26 +472,26 @@ public class combinepic2wordEditor extends VilleContent implements
             }
         });
 
-        editlayout.addComponent(questionText1, 0, 1);
-        editlayout.addComponent(questionText2, 1, 1);
-        editlayout.addComponent(questionText3, 2, 1);
-        editlayout.addComponent(questionText4, 3, 1);
-        editlayout.addComponent(questionText5, 0, 3);
-        editlayout.addComponent(questionText6, 1, 3);
-        editlayout.addComponent(questionText7, 2, 3);
-        editlayout.addComponent(questionText8, 3, 3);
-        editlayout.addComponent(uploader1, 0, 0);
-        editlayout.addComponent(uploader2, 1, 0);
-        editlayout.addComponent(uploader3, 2, 0);
-        editlayout.addComponent(uploader4, 3, 0);
-        editlayout.addComponent(uploader5, 0, 2);
-        editlayout.addComponent(uploader6, 1, 2);
-        editlayout.addComponent(uploader7, 2, 2);
-        editlayout.addComponent(uploader8, 3, 2);
-        editlayout.addComponent(questionTextHoax, 0, 4);
-        editlayout.addComponent(addWordButton, 0, 5);
-        editlayout.addComponent(selecthoax, 0, 6);
-        editlayout.addComponent(deleteHoaxButton, 0, 7);
+        editlayout.addComponent(questionText1, 0, 0);
+        editlayout.addComponent(questionText2, 0, 1);
+        editlayout.addComponent(questionText3, 0, 2);
+        editlayout.addComponent(questionText4, 0, 3);
+        editlayout.addComponent(questionText5, 0, 4);
+        editlayout.addComponent(questionText6, 0, 5);
+        editlayout.addComponent(questionText7, 0, 6);
+        editlayout.addComponent(questionText8, 0, 7);
+        editlayout.addComponent(uploader1, 1, 0);
+        editlayout.addComponent(uploader2, 1, 1);
+        editlayout.addComponent(uploader3, 1, 2);
+        editlayout.addComponent(uploader4, 1, 3);
+        editlayout.addComponent(uploader5, 1, 4);
+        editlayout.addComponent(uploader6, 1, 5);
+        editlayout.addComponent(uploader7, 1, 6);
+        editlayout.addComponent(uploader8, 1, 7);
+        editlayout.addComponent(questionTextHoax, 0, 8);
+        editlayout.addComponent(addWordButton, 0, 9);
+        editlayout.addComponent(selecthoax, 1, 8);
+        editlayout.addComponent(deleteHoaxButton, 1, 9);
 
         layout.addToRight(editlayout);
     }
