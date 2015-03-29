@@ -132,6 +132,7 @@ public class combinepic2wordEditor extends VilleContent implements
     }
 
     private combinepic2wordExerciseData getCurrentExercise() {
+        this.updateAnswers();
         return new combinepic2wordExerciseData(newPairs, newHoaxWords);
     }
 
@@ -510,6 +511,18 @@ public class combinepic2wordEditor extends VilleContent implements
 
     private void setImageWordPair(String str, AbstractFile file, int pos) {
         newPairs.set(pos-1, new picwordpair(str,file,pos));
+        
+    }
+    
+    private void updateAnswers(){
+        newPairs.get(0).setAnswer(questionText1.getValue());
+        newPairs.get(1).setAnswer(questionText2.getValue());
+        newPairs.get(2).setAnswer(questionText3.getValue());
+        newPairs.get(3).setAnswer(questionText4.getValue());
+        newPairs.get(4).setAnswer(questionText5.getValue());
+        newPairs.get(5).setAnswer(questionText6.getValue());
+        newPairs.get(6).setAnswer(questionText7.getValue());
+        newPairs.get(7).setAnswer(questionText8.getValue());
         
     }
 

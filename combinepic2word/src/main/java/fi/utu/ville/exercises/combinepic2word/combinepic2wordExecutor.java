@@ -71,6 +71,8 @@ public class combinepic2wordExecutor implements
                         tempImage = new Image();
                     }
                     Select tempSelect = getAnswerSelect(exerciseData);
+                    //Next line doesn't work?
+                    //tempSelect.setNullSelectionAllowed(false);
                     answerFields.add(tempSelect);
                     tempImage.setHeight("80px");
                     int x, r, c;
@@ -128,8 +130,10 @@ public class combinepic2wordExecutor implements
                     answerList.add(temp.getItemCaption(temp.getValue()));
                 }
                 for(int i=0;i<answerList.size();i++){
+                    if(answerList.get(i)==null)
+                        answerList.set(i, "");
                     if(answerList.get(i).equals(correctAnswers.get(i)))
-                        points++;
+                            points++;
                     answer = answer + " " + answerList.get(i);
                     System.out.println(answerList.get(i));
                     System.out.println(correctAnswers.get(i));
@@ -173,6 +177,8 @@ public class combinepic2wordExecutor implements
         ArrayList<picwordpair> temp = exerciseData.getExerciseData();
         for(int i=0;i<8;i++){
             retval.add(temp.get(i).getAnswer());
+            if(retval.get(i)=="")
+                retval.set(i, "");
         }
         return retval;
     }

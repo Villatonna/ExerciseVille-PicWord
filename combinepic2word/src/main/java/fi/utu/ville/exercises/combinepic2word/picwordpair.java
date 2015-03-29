@@ -35,6 +35,10 @@ class picwordpair {
         return this.answer;
     }
     
+    public void setAnswer(String s){
+        this.answer=s;
+    }
+    
     public AbstractFile getFile(){
         return this.file;
     }
