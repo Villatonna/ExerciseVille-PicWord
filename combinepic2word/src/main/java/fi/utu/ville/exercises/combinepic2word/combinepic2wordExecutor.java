@@ -1,5 +1,8 @@
 package fi.utu.ville.exercises.combinepic2word;
 
+import com.vaadin.event.MouseEvents;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
@@ -40,6 +43,7 @@ public class combinepic2wordExecutor implements
 	//private final TextField answerField = new TextField();
         private Select question;
         GridLayout answerLayout;
+        int nbrOfQuestions=0;
         
 
 	public combinepic2wordExecutor() {
@@ -55,7 +59,6 @@ public class combinepic2wordExecutor implements
 	}
 
 	private void doLayout(combinepic2wordExerciseData exerciseData, String oldAnswer) {
-            
                 answerLayout = new GridLayout(8, 8);
                 answerFields = new ArrayList(8);
                 correctAnswers = getCorrectAnswers(exerciseData);
@@ -63,14 +66,29 @@ public class combinepic2wordExecutor implements
                 ArrayList<picwordpair> questions = exerciseData.getExerciseData();
                 for(int i=0;i<8;i++){
                     questions.get(i).getAnswer();
-                    Image tempImage;
+                    final Image tempImage;
+                    Select tempSelect = getAnswerSelect(exerciseData);
+                    tempSelect.setImmediate(true);
                     if(questions.get(i).getFile()!= null){
-                        tempImage = new Image(null,questions.get(i).getFile().getAsResource());
+                        tempImage =  new Image(null,questions.get(i).getFile().getAsResource());
+                        tempImage.addClickListener(new MouseEvents.ClickListener() {
+                            @Override
+                            public void click(MouseEvents.ClickEvent event) {
+                              if(tempImage.getHeight()==80){
+                                  tempImage.setHeight("240px");
+                              }
+                              else{
+                                  tempImage.setHeight("80px");
+                              }
+                            }
+                        }
+                                
+                        );
                     }
                     else{
                         tempImage = new Image();
+                        tempSelect.setVisible(false);
                     }
-                    Select tempSelect = getAnswerSelect(exerciseData);
                     //Next line doesn't work?
                     //tempSelect.setNullSelectionAllowed(false);
                     answerFields.add(tempSelect);
@@ -109,7 +127,10 @@ public class combinepic2wordExecutor implements
 
 	@Override
 	public void askReset() {
-		// nothing to do here
+            for(int i=0;i<8;i++){
+                Select temp = answerFields.get(i);
+                answerFields.get(i).select(temp.getNullSelectionItemId());
+            }
 	}
 
 	@Override
@@ -122,6 +143,7 @@ public class combinepic2wordExecutor implements
 		double corr = 1.0;
                 //Max points 8/8
                 int points=0;
+                int questions=8;
                 String answer="Answers:";
                 ArrayList<String> answerList = new ArrayList();
                 
@@ -132,16 +154,13 @@ public class combinepic2wordExecutor implements
                 for(int i=0;i<answerList.size();i++){
                     if(answerList.get(i)==null)
                         answerList.set(i, "");
-                    if(answerList.get(i).equals(correctAnswers.get(i)))
+                    if(answerList.get(i).equals(correctAnswers.get(i)) && !correctAnswers.get(i).equals(""))
                             points++;
+                    if(correctAnswers.get(i).equals(""))
+                        questions--;
                     answer = answer + " " + answerList.get(i);
-                    System.out.println(answerList.get(i));
-                    System.out.println(correctAnswers.get(i));
-                }
-                
-                corr=(double)points/8;
-		
-                System.out.println(answer);
+                }                
+                corr=(double)points/questions;
 		execHelper.informOnlySubmit(corr, new combinepic2wordSubmissionInfo(answer),
 				submType, null);
 	}
@@ -177,7 +196,7 @@ public class combinepic2wordExecutor implements
         ArrayList<picwordpair> temp = exerciseData.getExerciseData();
         for(int i=0;i<8;i++){
             retval.add(temp.get(i).getAnswer());
-            if(retval.get(i)=="")
+            if(retval.get(i).equals(""))
                 retval.set(i, "");
         }
         return retval;

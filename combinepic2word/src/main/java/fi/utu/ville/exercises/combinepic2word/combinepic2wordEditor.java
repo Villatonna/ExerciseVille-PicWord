@@ -153,8 +153,6 @@ public class combinepic2wordEditor extends VilleContent implements
         oldHoaxWords = oldData.getHoaxWords();
         newPairs=oldPairs;
         newHoaxWords=oldHoaxWords;
-        System.out.println("Size of newPairs " + newPairs.size());
-        System.out.println("Size of oldPairs " + oldPairs.size());
         if(newPairs!=null){
             for(int i=0;i<newPairs.size();i++){
               System.out.println("newPairs content " + newPairs.get(i).getAnswer());
